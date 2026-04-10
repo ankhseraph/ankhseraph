@@ -68,6 +68,18 @@
       <td><strong>heart-cli</strong></td>
       <td>CLI gift: <code>heartfetch</code> a neofetch rewrite that prints a spinning 3d heart as the logo; <code>sandboxheart</code> is a mini sandbox.</td>
     </tr>
+    <tr>
+      <td><strong>uardal</strong></td>
+      <td>Romanian Wordle-style game that picks a random word each visit.</td>
+    </tr>
+    <tr>
+      <td><strong>sortvisualizer</strong></td>
+      <td>Quicksort visualizer on HTML canvas with in-place line swaps.</td>
+    </tr>
+    <tr>
+      <td><strong>mandelbrot</strong></td>
+      <td>Mandelbrot set visualizer with a WebAssembly-accelerated core.</td>
+    </tr>
   </tbody>
 </table>
 </div>
