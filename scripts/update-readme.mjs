@@ -8,6 +8,10 @@ const PAGES_REPO = process.env.PAGES_REPO ?? "pages";
 const PAGES_BRANCH = process.env.PAGES_BRANCH ?? "main";
 const CODEBERG_API_BASE = (process.env.CODEBERG_API_BASE ?? "https://codeberg.org/api/v1").replace(/\/+$/, "");
 const PAGES_BASE_URL = (process.env.PAGES_BASE_URL ?? "https://ankhseraph.codeberg.page").replace(/\/+$/, "");
+const PROJECTS_DIR = process.env.PROJECTS_DIR ?? "projects";
+const LOGBOOK_DIR = process.env.LOGBOOK_DIR ?? "logbook";
+const defaultLocalPath = path.join(process.env.HOME ?? "", "pages");
+const PAGES_LOCAL_PATH = process.env.PAGES_LOCAL_PATH ?? (fs.existsSync(defaultLocalPath) ? defaultLocalPath : "");
 
 const RAW_BASE = `https://codeberg.org/${PAGES_OWNER}/${PAGES_REPO}/raw/branch/${PAGES_BRANCH}`;
 const LATEST_PROJECTS_COUNT = Number(process.env.LATEST_PROJECTS_COUNT ?? "2");
@@ -182,6 +186,36 @@ async function fetchText(url) {
   return response.text();
 }
 
+function readLocalText(basePath, relPath) {
+  return fs.readFileSync(path.join(basePath, relPath), "utf8");
+}
+
+function readLocalJson(basePath, relPath) {
+  return JSON.parse(fs.readFileSync(path.join(basePath, relPath), "utf8"));
+}
+
+function readLocalDirFiles(basePath, relPath) {
+  return fs
+    .readdirSync(path.join(basePath, relPath), { withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name);
+}
+
+function localMtimeDateForPath(basePath, relPath) {
+  try {
+    const stat = fs.statSync(path.join(basePath, relPath));
+    return stat?.mtime ? new Date(stat.mtime) : null;
+  } catch {
+    return null;
+  }
+}
+
+async function fetchRepoContents(repoPath) {
+  const query = new URLSearchParams({ ref: PAGES_BRANCH });
+  const url = `${CODEBERG_API_BASE}/repos/${PAGES_OWNER}/${PAGES_REPO}/contents/${repoPath}?${query.toString()}`;
+  return fetchJson(url);
+}
+
 async function latestCommitDateForPath(repoPath) {
   const query = new URLSearchParams({ path: repoPath, limit: "1" });
   const url = `${CODEBERG_API_BASE}/repos/${PAGES_OWNER}/${PAGES_REPO}/commits?${query.toString()}`;
@@ -192,8 +226,51 @@ async function latestCommitDateForPath(repoPath) {
 }
 
 async function main() {
-  const projectsIndex = await fetchJson(`${RAW_BASE}/projects/index.json`).catch(() => []);
-  const logbookIndex = await fetchJson(`${RAW_BASE}/logbook/index.json`).catch(() => []);
+  const localBase = PAGES_LOCAL_PATH ? path.resolve(PAGES_LOCAL_PATH) : "";
+  const useLocal = Boolean(localBase) && fs.existsSync(localBase);
+
+  let projectsIndex = [];
+  let logbookIndex = [];
+
+  if (useLocal) {
+    projectsIndex = (() => {
+      try {
+        return readLocalJson(localBase, `${PROJECTS_DIR}/index.json`);
+      } catch {
+        return [];
+      }
+    })();
+    logbookIndex = (() => {
+      try {
+        return readLocalJson(localBase, `${LOGBOOK_DIR}/index.json`);
+      } catch {
+        return [];
+      }
+    })();
+  } else {
+    projectsIndex = await fetchJson(`${RAW_BASE}/${PROJECTS_DIR}/index.json`).catch(() => []);
+    logbookIndex = await fetchJson(`${RAW_BASE}/${LOGBOOK_DIR}/index.json`).catch(() => []);
+  }
+
+  if (!Array.isArray(projectsIndex) || projectsIndex.length === 0) {
+    if (useLocal) {
+      projectsIndex = readLocalDirFiles(localBase, PROJECTS_DIR);
+    } else {
+      projectsIndex = await fetchRepoContents(PROJECTS_DIR)
+        .then((items) => items.filter((item) => item?.type === "file").map((item) => item?.name))
+        .catch(() => projectsIndex);
+    }
+  }
+
+  if (!Array.isArray(logbookIndex) || logbookIndex.length === 0) {
+    if (useLocal) {
+      logbookIndex = readLocalDirFiles(localBase, LOGBOOK_DIR);
+    } else {
+      logbookIndex = await fetchRepoContents(LOGBOOK_DIR)
+        .then((items) => items.filter((item) => item?.type === "file").map((item) => item?.name))
+        .catch(() => logbookIndex);
+    }
+  }
 
   const logbookFiles = Array.isArray(logbookIndex) ? logbookIndex.filter((name) => isIsoDateMd(name)) : [];
   logbookFiles.sort((a, b) => String(b).localeCompare(String(a)));
@@ -206,7 +283,6 @@ async function main() {
 
   const projectsCount = projectFiles.length;
   const logbookCount = logbookFiles.length;
-  const totalWriteups = projectsCount + logbookCount;
 
   const latestLogbookFile = logbookFiles[0] ?? null;
   const projectCandidates = await (async () => {
@@ -214,8 +290,8 @@ async function main() {
 
     const candidates = await Promise.all(
       projectFiles.map(async (name) => {
-        const repoPath = `projects/${name}`;
-        const date = await latestCommitDateForPath(repoPath).catch(() => null);
+        const repoPath = `${PROJECTS_DIR}/${name}`;
+        const date = useLocal ? localMtimeDateForPath(localBase, repoPath) : await latestCommitDateForPath(repoPath).catch(() => null);
         return { name, date };
       }),
     );
@@ -231,25 +307,25 @@ async function main() {
 
   const latestProjectFile = projectCandidates[0]?.name ?? null;
 
-  let latestProjectTitle = "No projects yet";
+  let latestProjectTitle = "—";
   let latestProjectDesc = "";
   let latestProjectLink = "";
 
   if (latestProjectFile) {
-    const rel = `projects/${latestProjectFile}`;
-    const md = await fetchText(`${RAW_BASE}/${rel}`);
+    const rel = `${PROJECTS_DIR}/${latestProjectFile}`;
+    const md = useLocal ? readLocalText(localBase, rel) : await fetchText(`${RAW_BASE}/${rel}`);
     latestProjectTitle = extractH1(md) || latestProjectFile.replace(/\.md$/i, "");
     latestProjectDesc = toOneSentence(extractFirstParagraph(md));
     latestProjectLink = linkToPagesMd(rel);
   }
 
-  let latestLogbookTitle = "No logbook entries yet";
+  let latestLogbookTitle = "—";
   let latestLogbookDesc = "";
   let latestLogbookLink = "";
 
   if (latestLogbookFile) {
-    const rel = `logbook/${latestLogbookFile}`;
-    const md = await fetchText(`${RAW_BASE}/${rel}`);
+    const rel = `${LOGBOOK_DIR}/${latestLogbookFile}`;
+    const md = useLocal ? readLocalText(localBase, rel) : await fetchText(`${RAW_BASE}/${rel}`);
     const date = latestLogbookFile.replace(/\.md$/i, "");
     const subtitle = extractLogbookSubtitle(md);
     latestLogbookTitle = subtitle ? `${date} — ${subtitle}` : date;
@@ -257,40 +333,24 @@ async function main() {
     latestLogbookLink = linkToPagesMd(rel);
   }
 
-  const latestProjects = await Promise.all(
-    projectCandidates.slice(0, Math.max(0, LATEST_PROJECTS_COUNT)).map(async ({ name }) => {
-      const rel = `projects/${name}`;
-      const md = await fetchText(`${RAW_BASE}/${rel}`).catch(() => "");
-      const title = extractH1(md) || name.replace(/\.md$/i, "");
-      return { title, href: linkToPagesMd(rel) };
-    }),
-  );
-
-  const latestLogbook = await Promise.all(
-    logbookFiles.slice(0, Math.max(0, LATEST_LOGBOOK_COUNT)).map(async (name) => {
-      const rel = `logbook/${name}`;
-      const md = await fetchText(`${RAW_BASE}/${rel}`).catch(() => "");
-      const date = name.replace(/\.md$/i, "");
-      const subtitle = extractLogbookSubtitle(md);
-      const title = subtitle ? `${date} — ${subtitle}` : date;
-      return { title, href: linkToPagesMd(rel) };
-    }),
-  );
+  const cleanProjectDesc = htmlEscape(latestProjectDesc).trim();
+  const cleanLogbookDesc = htmlEscape(latestLogbookDesc).trim();
 
   const newBlock = `<!-- AUTO-GENERATED:START (do not edit by hand) -->
-## Latest highlights
+<div align="center">
+<h2>Latest highlights</h2>
 
-<table>
+<table width="100%">
   <tr>
-    <td width="50%">
+    <td width="50%" valign="top" align="center">
       <h3>Latest project writeup</h3>
       <p>${renderStrongLink({ title: latestProjectTitle, href: latestProjectLink })}</p>
-      <p>${htmlEscape(latestProjectDesc)}</p>
+      <p>${cleanProjectDesc}</p>
     </td>
-    <td width="50%">
+    <td width="50%" valign="top" align="center">
       <h3>Latest logbook entry</h3>
       <p>${renderStrongLink({ title: latestLogbookTitle, href: latestLogbookLink })}</p>
-      <p>${htmlEscape(latestLogbookDesc)}</p>
+      <p>${cleanLogbookDesc}</p>
     </td>
   </tr>
 </table>
@@ -298,6 +358,7 @@ async function main() {
 <p><strong>Total project writeups</strong>: ${projectsCount} • <strong>Total logbook entries</strong>: ${logbookCount}</p>
 
 <p align="center"><small>Auto-updated from my <a href="https://codeberg.org/ankhseraph/pages">pages repo</a>.</small></p>
+</div>
 <!-- AUTO-GENERATED:END -->`;
 
   updateReadmeGeneratedBlock(newBlock);
