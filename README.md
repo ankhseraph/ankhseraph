@@ -14,22 +14,22 @@
 <!-- AUTO-GENERATED:START (do not edit by hand) -->
 ## Latest highlights
 
-<table>
+<table width="100%">
   <tr>
-    <td width="50%">
-      <h3>Latest project writeup</h3>
-      <p><strong>No projects yet</strong></p>
-      <p></p>
+    <td width="50%" valign="top">
+      <p><strong>⟡⟡⟡ LATEST PROJECT WRITEUP ⟡⟡⟡</strong></p>
+      <p>⟡ Coming soon ⟡</p>
+      <p>∿∿∿</p>
     </td>
-    <td width="50%">
-      <h3>Latest logbook entry</h3>
-      <p><strong>No logbook entries yet</strong></p>
-      <p></p>
+    <td width="50%" valign="top">
+      <p><strong>⟡⟡⟡ LATEST LOGBOOK ENTRY ⟡⟡⟡</strong></p>
+      <p>⟡ Coming soon ⟡</p>
+      <p>∿∿∿</p>
     </td>
   </tr>
 </table>
 
-<p><strong>Total project writeups</strong>: 0 • <strong>Total logbook entries</strong>: 0</p>
+<p><strong>⟡ TOTAL PROJECT WRITEUPS ⟡</strong> 0  ⟡  <strong>⟡ TOTAL LOGBOOK ENTRIES ⟡</strong> 0</p>
 
 <p align="center"><small>Auto-updated from my <a href="https://codeberg.org/ankhseraph/pages">pages repo</a>.</small></p>
 <!-- AUTO-GENERATED:END -->
