@@ -279,9 +279,18 @@ async function main() {
 
   const newBlock = `<!-- AUTO-GENERATED:START (do not edit by hand) -->
 <div align="center">
-  <h2>Total writeups</h2>
-  <h1>${totalWriteups}</h1>
-  <p>${projectsCount} ${pluralize(projectsCount, "project")} • ${logbookCount} logbook ${pluralize(logbookCount, "entry", "entries")}</p>
+  <table>
+    <tr>
+      <td align="center" width="50%">
+        <p><strong>Total project writeups</strong></p>
+        <p style="font-size: 28px; margin: 0;"><strong>${projectsCount}</strong></p>
+      </td>
+      <td align="center" width="50%">
+        <p><strong>Total logbook entries</strong></p>
+        <p style="font-size: 28px; margin: 0;"><strong>${logbookCount}</strong></p>
+      </td>
+    </tr>
+  </table>
 </div>
 
 ---
