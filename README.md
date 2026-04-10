@@ -65,9 +65,7 @@
 | Project | Description |
 | --- | --- |
 | **My NixOS (ankhnix)** | Declarative multi-host NixOS flake for my desktop, laptop, and homeserver. |
-| **The e-Waste Homeserver** | A 2013 laptop repurposed into a small NixOS homeserver for self-hosting and backups. |
-| **Navidrome, the music server** | Lossless music library + Navidrome, with a metadata workflow and NAS syncing. |
-| **Kuraokami — NixOS Configuration (nix-config)** | My main NixOS flake for a tuned Wayland/Sway desktop and shared defaults. |
+| **The e-Waste Homeserver** | A 2013 laptop repurposed into a small NixOS homeserver for self-hosting Docker containers (Navidrome, Filebrowser, SearXNG, Vaultawrden), backups. "Powered" by ankhnix. |
 | **vibe-oopsie** | Scans Git history (including dangling commits) for leaked secrets. |
 | **kebab-folders** | CLI to preview and convert folder names to kebab-case. |
-| **heart-cli** | CLI gift: `heartfetch` prints an ASCII heart; `sandboxheart` is a mini sandbox. |
+| **heart-cli** | CLI gift: `heartfetch`  a neofetch rewrite that prints a spinning 3d heart as the logo; `sandboxheart` is a mini sandbox. |
