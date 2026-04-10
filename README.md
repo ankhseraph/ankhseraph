@@ -12,48 +12,24 @@
 ---
 
 <!-- AUTO-GENERATED:START (do not edit by hand) -->
-<div align="center">
-  <h2>Total writeups</h2>
-  <h1>3</h1>
-  <p>2 projects • 1 logbook entry</p>
-</div>
-
----
-
 ## Latest highlights
 
 <table>
   <tr>
     <td width="50%">
       <h3>Latest project writeup</h3>
-      <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=projects%2FNIXOS.md">My NixOS (ankhnix)</a></strong></p>
-      <p>Realizing a long struggle with lack of reproducibility and "it works on my system" headaches, I came across NixOS.</p>
+      <p><strong>No projects yet</strong></p>
+      <p></p>
     </td>
     <td width="50%">
       <h3>Latest logbook entry</h3>
-      <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=logbook%2F2026-04-09.md">2026-04-09 — Initial commit</a></strong></p>
-      <p>About a year ago, I got into Linux.</p>
+      <p><strong>No logbook entries yet</strong></p>
+      <p></p>
     </td>
   </tr>
 </table>
 
-<table>
-  <tr>
-    <td width="50%">
-      <h3>Latest projects</h3>
-      <ul>
-        <li><a href="https://ankhseraph.codeberg.page/md.html?file=projects%2FNIXOS.md">My NixOS (ankhnix)</a></li>
-        <li><a href="https://ankhseraph.codeberg.page/md.html?file=projects%2FNAVIDROME.md">Navidrome, the music server</a></li>
-      </ul>
-    </td>
-    <td width="50%">
-      <h3>Latest blog (logbook)</h3>
-      <ul>
-        <li><a href="https://ankhseraph.codeberg.page/md.html?file=logbook%2F2026-04-09.md">2026-04-09 — Initial commit</a></li>
-      </ul>
-    </td>
-  </tr>
-</table>
+<p><strong>Total project writeups</strong>: 0 • <strong>Total logbook entries</strong>: 0</p>
 
 <p align="center"><small>Auto-updated from my <a href="https://codeberg.org/ankhseraph/pages">pages repo</a>.</small></p>
 <!-- AUTO-GENERATED:END -->

@@ -278,23 +278,6 @@ async function main() {
   );
 
   const newBlock = `<!-- AUTO-GENERATED:START (do not edit by hand) -->
-<div align="center">
-  <table>
-    <tr>
-      <td align="center" width="50%">
-        <p><strong>Total project writeups</strong></p>
-        <p style="font-size: 28px; margin: 0;"><strong>${projectsCount}</strong></p>
-      </td>
-      <td align="center" width="50%">
-        <p><strong>Total logbook entries</strong></p>
-        <p style="font-size: 28px; margin: 0;"><strong>${logbookCount}</strong></p>
-      </td>
-    </tr>
-  </table>
-</div>
-
----
-
 ## Latest highlights
 
 <table>
@@ -312,18 +295,7 @@ async function main() {
   </tr>
 </table>
 
-<table>
-  <tr>
-    <td width="50%">
-      <h3>Latest projects</h3>
-      ${renderLinksList(latestProjects)}
-    </td>
-    <td width="50%">
-      <h3>Latest blog (logbook)</h3>
-      ${renderLinksList(latestLogbook)}
-    </td>
-  </tr>
-</table>
+<p><strong>Total project writeups</strong>: ${projectsCount} • <strong>Total logbook entries</strong>: ${logbookCount}</p>
 
 <p align="center"><small>Auto-updated from my <a href="https://codeberg.org/ankhseraph/pages">pages repo</a>.</small></p>
 <!-- AUTO-GENERATED:END -->`;
