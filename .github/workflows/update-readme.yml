@@ -42,4 +42,4 @@ jobs:
           git add README.md
           git commit -m "script updated readme" || echo "nothing to commit"
           git push origin main
-          git push codeberg main
+          git push codeberg main --force
