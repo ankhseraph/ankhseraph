@@ -57,6 +57,10 @@
       <td>A 2013 laptop repurposed into a small NixOS homeserver for self-hosting Docker containers (Navidrome, Filebrowser, SearXNG, Vaultawrden), backups. &quot;Powered&quot; by ankhnix.</td>
     </tr>
     <tr>
+        <td><strong>pswdgen-api</strong></td>
+        <td>Dockerized SSH & password generator API with a CI/CD pipeline with GitHub Actions.
+    </tr>
+    <tr>
       <td><strong>vibe-oopsie</strong></td>
       <td>Scans Git history (including dangling commits) for leaked secrets.</td>
     </tr>
