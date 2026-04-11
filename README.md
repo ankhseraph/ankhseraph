@@ -17,18 +17,18 @@
   <tr>
     <td width="50%" valign="top" align="center">
       <h3>Latest project writeup</h3>
-      <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=projects/HOMESERVER.md">The e-Waste Homeserver</a></strong></p>
-      <p>I found an old 2013 HP laptop lying around the house.</p>
+      <p><strong>—</strong></p>
+      <p></p>
     </td>
     <td width="50%" valign="top" align="center">
       <h3>Latest logbook entry</h3>
-      <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=logbook/2026-04-09.md">2026-04-09 — The &quot;initial commit&quot;</a></strong></p>
-      <p>About a year ago, I got into Linux.</p>
+      <p><strong>—</strong></p>
+      <p></p>
     </td>
   </tr>
 </table>
 
-<p><strong>Total project writeups</strong>: 3 • <strong>Total logbook entries</strong>: 1</p>
+<p><strong>Total project writeups</strong>: 0 • <strong>Total logbook entries</strong>: 0</p>
 
 <p align="center"><small>Auto-updated from my <a href="https://codeberg.org/ankhseraph/pages">pages repo</a>.</small></p>
 </div>
