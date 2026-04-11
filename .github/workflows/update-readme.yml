@@ -22,10 +22,24 @@ jobs:
       - name: run script
         run: python scripts/update-readme.py
 
+      - name: setup ssh for codeberg
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CODEBERG_SSH_KEY }}" > ~/.ssh/codeberg
+          chmod 600 ~/.ssh/codeberg
+          cat >> ~/.ssh/config << 'EOF'
+          Host codeberg.org
+            IdentityFile ~/.ssh/codeberg
+            StrictHostKeyChecking no
+          EOF
+          ssh-keyscan codeberg.org >> ~/.ssh/known_hosts
+          git remote add codeberg git@codeberg.org:ankhseraph/.profile.git
+
       - name: commit & push
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add README.md
           git commit -m "script updated readme" || echo "nothing to commit"
-          git push
+          git push origin main
+          git push codeberg main
