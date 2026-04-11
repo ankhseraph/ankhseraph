@@ -12,7 +12,7 @@ from pathlib import Path
 README_PATH = Path(os.environ.get("PROFILE_README_PATH", "README.md")).resolve()
 PAGES_OWNER = os.environ.get("PAGES_OWNER", "ankhseraph")
 PAGES_REPO = os.environ.get("PAGES_REPO", "pages")
-PAGES_BRANCH = os.environ.get("PAGES_BRANCH", "main")
+PAGES_BRANCH = os.environ.get("PAGES_BRANCH", "pages")
 CODEBERG_API_BASE = os.environ.get("CODEBERG_API_BASE", "https://codeberg.org/api/v1").rstrip("/")
 PAGES_BASE_URL = os.environ.get("PAGES_BASE_URL", "https://ankhseraph.codeberg.page").rstrip("/")
 PROJECTS_DIR = os.environ.get("PROJECTS_DIR", "projects")
@@ -20,25 +20,31 @@ LOGBOOK_DIR = os.environ.get("LOGBOOK_DIR", "logbook")
 _env_local = os.environ.get("PAGES_LOCAL_PATH", "")
 PAGES_LOCAL_PATH = _env_local or (str(Path.home() / "pages") if (Path.home() / "pages").exists() else "")
 
-RAW_BASE = f"https://codeberg.org/{PAGES_OWNER}/{PAGES_REPO}/raw/branch/{PAGES_BRANCH}"
-
-
 def fetch_json(url: str):
     req = urllib.request.Request(url, headers={"cache-control": "no-store"})
     with urllib.request.urlopen(req, timeout=20) as resp:
         return json.load(resp)
 
 
-def fetch_text(url: str) -> str:
-    req = urllib.request.Request(url, headers={"cache-control": "no-store"})
-    with urllib.request.urlopen(req, timeout=20) as resp:
-        return resp.read().decode("utf-8", errors="replace")
-
 def read_local_text(base: Path, rel_path: str) -> str:
     return (base / rel_path).read_text(encoding="utf-8")
 
 def read_local_json(base: Path, rel_path: str):
     return json.loads((base / rel_path).read_text(encoding="utf-8"))
+
+
+def fetch_api_file_content(path: str) -> str:
+    """Fetch file content via Codeberg API (base64 encoded)."""
+    import base64
+    url = f"{CODEBERG_API_BASE}/repos/{PAGES_OWNER}/{PAGES_REPO}/contents/{path}?ref={PAGES_BRANCH}"
+    data = fetch_json(url)
+    content = data.get("content", "")
+    return base64.b64decode(content).decode("utf-8", errors="replace")
+
+
+def fetch_api_file_json(path: str):
+    """Fetch JSON file content via Codeberg API."""
+    return json.loads(fetch_api_file_content(path))
 
 
 def is_iso_date_md(name: str) -> bool:
@@ -247,11 +253,11 @@ def main():
             logbook_index = []
     else:
         try:
-            projects_index = fetch_json(f"{RAW_BASE}/{PROJECTS_DIR}/index.json")
+            projects_index = fetch_api_file_json(f"{PROJECTS_DIR}/index.json")
         except Exception:
             projects_index = []
         try:
-            logbook_index = fetch_json(f"{RAW_BASE}/{LOGBOOK_DIR}/index.json")
+            logbook_index = fetch_api_file_json(f"{LOGBOOK_DIR}/index.json")
         except Exception:
             logbook_index = []
 
@@ -323,7 +329,7 @@ def main():
     latest_project_link = ""
     if latest_project_file:
         rel = f"{PROJECTS_DIR}/{latest_project_file}"
-        md = read_local_text(local_base, rel) if use_local else fetch_text(f"{RAW_BASE}/{rel}")
+        md = read_local_text(local_base, rel) if use_local else fetch_api_file_content(rel)
         latest_project_title = extract_h1(md) or latest_project_file.replace(".md", "")
         latest_project_desc = to_one_sentence(extract_first_paragraph(md))
         latest_project_link = link_to_pages_md(rel)
@@ -333,7 +339,7 @@ def main():
     latest_logbook_link = ""
     if latest_logbook_file:
         rel = f"{LOGBOOK_DIR}/{latest_logbook_file}"
-        md = read_local_text(local_base, rel) if use_local else fetch_text(f"{RAW_BASE}/{rel}")
+        md = read_local_text(local_base, rel) if use_local else fetch_api_file_content(rel)
         date = latest_logbook_file.replace(".md", "")
         subtitle = extract_logbook_subtitle(md)
         latest_logbook_title = f"{date} — {subtitle}" if subtitle else date
