@@ -17,8 +17,8 @@
   <tr>
     <td width="50%" valign="top" align="center">
       <h3>Latest project writeup</h3>
-      <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=projects/PSWDGEN_API.md">pswdgen_api</a></strong></p>
-      <p>CI/CD in a SSH key &amp; password generator API through Docker and GithubActions.</p>
+      <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=projects/PROFILE.md">This very profile</a></strong></p>
+      <p>I&#x27;ve been programming somewhat consistenly since age 10.</p>
     </td>
     <td width="50%" valign="top" align="center">
       <h3>Latest logbook entry</h3>
@@ -28,7 +28,7 @@
   </tr>
 </table>
 
-<p><strong>Total project writeups</strong>: 4 • <strong>Total logbook entries</strong>: 2</p>
+<p><strong>Total project writeups</strong>: 5 • <strong>Total logbook entries</strong>: 2</p>
 
 <p align="center"><small>Auto-updated from my <a href="https://codeberg.org/ankhseraph/pages">pages repo</a>.</small></p>
 </div>
