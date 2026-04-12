@@ -18,7 +18,7 @@
     <td width="50%" valign="top" align="center">
       <h3>Latest project writeup</h3>
       <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=projects/PROFILE.md">This very profile</a></strong></p>
-      <p>I&#x27;ve been programming somewhat consistenly since age 10.</p>
+      <p>I&#x27;ve been programming somewhat consistently since age 10.</p>
     </td>
     <td width="50%" valign="top" align="center">
       <h3>Latest logbook entry</h3>
