@@ -54,7 +54,7 @@
     </tr>
     <tr>
       <td><strong>The e-Waste Homeserver</strong></td>
-      <td>A 2013 laptop repurposed into a small NixOS homeserver for self-hosting Docker containers (Navidrome, Filebrowser, SearXNG, Vaultawrden), backups. &quot;Powered&quot; by ankhnix.</td>
+      <td>A 2013 laptop repurposed into a small NixOS homeserver for self-hosting Docker containers (Navidrome, Filebrowser, SearXNG, Vaultwarden), backups. &quot;Powered&quot; by ankhnix.</td>
     </tr>
     <tr>
         <td><strong>pswdgen-api</strong></td>
