@@ -2,8 +2,12 @@
   <pre>
    !! full disclosure !!
 
-   my personal ai policy: i use ai as a writing assistant while coding, i do use claude code and such but i try to do it sparingly and actually learn. i don't consider myself a "vibe coder" and i take full responsibility for all code shared.
-   NONE of my actual writing (i.e. blogs, logbooks, readmes are ai written.) is written with ai beyond checking for typos or bad grammar. 
+   my personal ai policy: i use ai as a writing assistant while coding, i do use claude code and such but
+   i try to do it sparingly and actually learn. i don't consider myself a "vibe coder" and i take full
+   responsibility for all code shared.
+
+   NONE of my actual writing (i.e. blogs, logbooks, readmes are ai written.) is written with ai beyond
+   checking for typos or bad grammar. 
   </pre>
   <h1>Hi, I'm Mihai</h1>
   <p>A passionate developer and tinkerer from Romania.</p>
