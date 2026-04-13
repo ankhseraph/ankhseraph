@@ -30,11 +30,9 @@
 
 <hr />
 
-<div align="center">
-  <h2>All projects and tools</h2>
-</div>
 
-<pre>
+<div align="center">
+ <pre>
    !! full disclosure !!
 
    my personal ai policy: i use ai as a writing assistant while coding, i do use claude code and such but
@@ -44,6 +42,8 @@
    NONE of my actual writing (i.e. blogs, logbooks, readmes are ai written.) is written with ai beyond
    checking for typos or bad grammar. 
 </pre>
+ <h2>All projects and tools</h2>
+</div>
 
 <table align="center">
   <thead>
