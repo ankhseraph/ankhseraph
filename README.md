@@ -1,14 +1,4 @@
 <div align="center">
-  <pre>
-   !! full disclosure !!
-
-   my personal ai policy: i use ai as a writing assistant while coding, i do use claude code and such but
-   i try to do it sparingly and actually learn. i don't consider myself a "vibe coder" and i take full
-   responsibility for all code shared.
-
-   NONE of my actual writing (i.e. blogs, logbooks, readmes are ai written.) is written with ai beyond
-   checking for typos or bad grammar. 
-  </pre>
   <h1>Hi, I'm Mihai</h1>
   <p>A passionate developer and tinkerer from Romania.</p>
 <hr />
@@ -27,7 +17,7 @@
     <td width="50%" valign="top" align="center">
       <h3>Latest logbook entry</h3>
       <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=logbook/2026-04-11.md">2026-04-11 — Easter break made me crazy productive</a></strong></p>
-      <p>I wanted to start establishing strong bases in Python, so I figured I&#x27;d learn multiple things at once: Docker (moreso than I do already), CI/CD, GitHub Actions and, of course, Python.</p>
+      <p>I wanted to start establishing strong bases in Python, so I figured I&#x27;d learn multiple things at once: Docker (more so than I do already), CI/CD, GitHub Actions and, of course, Python.</p>
     </td>
   </tr>
 </table>
@@ -43,6 +33,17 @@
 <div align="center">
   <h2>All projects and tools</h2>
 </div>
+
+<pre>
+   !! full disclosure !!
+
+   my personal ai policy: i use ai as a writing assistant while coding, i do use claude code and such but
+   i try to do it sparingly and actually learn. i don't consider myself a "vibe coder" and i take full
+   responsibility for all code shared.
+
+   NONE of my actual writing (i.e. blogs, logbooks, readmes are ai written.) is written with ai beyond
+   checking for typos or bad grammar. 
+</pre>
 
 <table align="center">
   <thead>
