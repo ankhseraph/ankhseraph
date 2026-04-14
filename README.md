@@ -16,13 +16,13 @@
     </td>
     <td width="50%" valign="top" align="center">
       <h3>Latest logbook entry</h3>
-      <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=logbook/2026-04-11.md">2026-04-11 — Easter break made me crazy productive</a></strong></p>
-      <p>I wanted to start establishing strong bases in Python, so I figured I&#x27;d learn multiple things at once: Docker (moreso than I do already), CI/CD, GitHub Actions and, of course, Python.</p>
+      <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=logbook/2026-04-14.md">2026-04-14 — Learning a lot of cryptography to implement my TOTP API with proper industry security practices.</a></strong></p>
+      <p>So, my understand is the following: we use HMAC-SHA1 to hash the user&#x27;s TOTP secret along with the current Unix time floored by 30 seconds, then, we read the last byte and the number it contains is the index of the firs…</p>
     </td>
   </tr>
 </table>
 
-<p><strong>Total project writeups</strong>: 5 • <strong>Total logbook entries</strong>: 2</p>
+<p><strong>Total project writeups</strong>: 5 • <strong>Total logbook entries</strong>: 3</p>
 
 <p align="center"><small>Auto-updated from my <a href="https://codeberg.org/ankhseraph/pages">pages repo</a>.</small></p>
 </div>
