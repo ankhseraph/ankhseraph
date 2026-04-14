@@ -16,8 +16,8 @@
     </td>
     <td width="50%" valign="top" align="center">
       <h3>Latest logbook entry</h3>
-      <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=logbook/2026-04-14.md">2026-04-14 — Learning a lot of cryptography to implement my TOTP API with proper industry security practices.</a></strong></p>
-      <p>So, my understand is the following: we use HMAC-SHA1 to hash the user&#x27;s TOTP secret along with the current Unix time floored by 30 seconds, then, we read the last byte and the number it contains is the index of the firs…</p>
+      <p><strong><a href="https://ankhseraph.codeberg.page/md.html?file=logbook/2026-04-14.md">2026-04-14</a></strong></p>
+      <p>Learning a lot of cryptography to implement my TOTP API with proper industry security practices.</p>
     </td>
   </tr>
 </table>
