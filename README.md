@@ -2,7 +2,7 @@
 
 # user
 
-<em>nixos · low-level tinkering · web stuff on the side</em>
+<em>linux, hardware, web & networking</em>
 
 <!-- AUTO-GENERATED:START (do not edit by hand) -->
 <p><a href="https://user.codeberg.page/md.html?file=projects/PROFILE.md">latest project writeup</a> · <a href="https://user.codeberg.page/md.html?file=logbook/2026-04-14.md">latest logbook entry</a></p>
