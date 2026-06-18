@@ -1,16 +1,6 @@
 <div align="center">
 
-# user
-
 <em>linux, hardware, web & networking</em>
-
-<!-- AUTO-GENERATED:START (do not edit by hand) -->
-<p><a href="https://user.codeberg.page/md.html?file=projects/PROFILE.md">latest project writeup</a> · <a href="https://user.codeberg.page/md.html?file=logbook/2026-04-14.md">latest logbook entry</a></p>
-
-<p>total project writeups: 5 · total logbook entries: 3</p>
-
-<p><sub>auto-updated from my <a href="https://codeberg.org/user/pages">pages repo</a>.</sub></p>
-<!-- AUTO-GENERATED:END -->
 
 </div>
 
@@ -33,12 +23,12 @@ none of my actual writing is written with ai. at worst, some readmes are there a
 **systems and infra**
 
 **`nix-config`** <br>
-declarative multi-host nixos flake for my desktop, laptop, and homeserver.
+declarative multi-host nixos flake for desktop, laptop, and homeserver.
 
 **`e-waste homeserver`** <br>
-a 2013 laptop repurposed into a small nixos homeserver for self-hosting docker containers (navidrome, filebrowser, searxng, vaultwarden), backups. "powered" by nix-config.
+a 2013 laptop repurposed into a small nixos homeserver for self-hosting docker containers (navidrome, filebrowser, searxng, vaultwarden), backups.
 
-**`libreboot-nidhoggr`** <br>
+**`libreboot-t480`** <br>
 personal libreboot patch set for the thinkpad t480; enables smt, natacpi battery thresholds, fn/ctrl swap at ec level, and a grub+seabios dual payload.
 
 </td>
